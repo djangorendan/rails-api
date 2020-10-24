@@ -3,7 +3,7 @@ json.title @post.title
 json.user do
   json.email @post.user.email
 end
-json.comments @post.comments.each do |comment|
+json.comments @comments do |comment|
   json.body comment.body
   json.user do
     json.email comment.user.email
@@ -14,4 +14,6 @@ json.comments @post.comments.each do |comment|
       json.email subcomment.user.email
     end
   end
+
+  json.partial! "shared/pagination", collection: @comments
 end
